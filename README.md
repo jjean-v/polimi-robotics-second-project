@@ -1,1 +1,3 @@
+# polimi Robotics Second Project
 
+The goal of this group project is to, ...
