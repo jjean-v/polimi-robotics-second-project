@@ -1,0 +1,5 @@
+# Ignore build and log directories for colcon workspace
+colcon_ws/log/
+colcon_ws/build/
+colcon_ws/install/
+bags/
