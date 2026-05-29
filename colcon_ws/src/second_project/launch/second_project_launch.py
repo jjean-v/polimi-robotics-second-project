@@ -11,19 +11,13 @@ def generate_launch_description():
             description='Namespace for sample topics'
         ),
         # Node(
-        #     package='pointcloud_to_laserscan', executable='dummy_pointcloud_publisher',
-        #     remappings=[('cloud', [LaunchConfiguration(variable_name='scanner'), '/cloud'])],
-        #     parameters=[{'cloud_frame_id': 'cloud', 'cloud_extent': 2.0, 'cloud_size': 500}],
-        #     name='cloud_publisher'
-        # ),
-        # Node(
         #     package='tf2_ros',
         #     executable='static_transform_publisher',
         #     name='static_transform_publisher',
         #     arguments=[
         #         '--x', '0', '--y', '0', '--z', '0',
         #         '--qx', '0', '--qy', '0', '--qz', '0', '--qw', '1',
-        #         '--frame-id', 'map', '--child-frame-id', 'cloud'
+        #         '--frame-id', 'map', '--child-frame-id', 'UGV_odom'
         #     ]
         # ),
         Node(
@@ -33,7 +27,7 @@ def generate_launch_description():
             parameters=[{
                 'target_frame': 'UGV_odom',
                 'transform_tolerance': 0.01,
-                'min_height': -0.6,
+                'min_height': -0.4,
                 'max_height': 4.0,
                 'angle_min': -3.14159,
                 'angle_max': 3.14159,
