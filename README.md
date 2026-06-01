@@ -42,6 +42,8 @@ ros2 launch second_project second_project_launch.py
 > - In the LaserScan settings, select best effort to get the correct frame and topic
 > - Select **UVG_odom** as the fixed frame
 > - Optionnaly add **CloudPoint**
+> - Add Topic **Map** to visualize the map
+> - Add Topic **Arraymarker** to visualize the robot path
 
 
 ## Roadmap 

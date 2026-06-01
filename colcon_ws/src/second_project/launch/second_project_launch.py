@@ -9,6 +9,8 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     pkg_share = FindPackageShare('second_project')
     default_params = PathJoinSubstitution([pkg_share, 'config', 'mapper_params.yaml']) 
+    rviz_config = PathJoinSubstitution([pkg_share, 'config', 'rviz', 'mapping_rviz_config.rviz']) 
+    print("rviz_config: ", rviz_config)
 
     return LaunchDescription([
         DeclareLaunchArgument(name='scanner', default_value='ugv',description='Namespace for sample topics'),
@@ -19,8 +21,8 @@ def generate_launch_description():
         DeclareLaunchArgument('map_frame', default_value='map', description='Map frame published by SLAM Toolbox.'),
         DeclareLaunchArgument('base_frame', default_value='UGV_base_link', description='Robot base frame used by SLAM Toolbox.'),
         DeclareLaunchArgument('slam_params_file', default_value=default_params, description='SLAM Toolbox parameter file.'),
-        # DeclareLaunchArgument('rviz_config', default_value=default_rviz, description='RViz config file.'),
-      
+        DeclareLaunchArgument('rviz_config', default_value=rviz_config, description='RViz config file.'),
+
         Node(
             package='pointcloud_to_laserscan', executable='pointcloud_to_laserscan_node',
             remappings=[('cloud_in', [LaunchConfiguration(variable_name='scanner'), '/rslidar_points']),
@@ -57,5 +59,14 @@ def generate_launch_description():
                     'scan_topic': LaunchConfiguration('scan_topic'),
                 },
             ],
+        ),
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            # parameters=[{
+            #     'use_sim_time': LaunchConfiguration('use_sim_time'),
+            # }],
+            arguments=['-d', LaunchConfiguration('rviz_config')],
         )
     ])
