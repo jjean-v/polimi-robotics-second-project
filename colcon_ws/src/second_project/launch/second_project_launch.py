@@ -10,7 +10,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     pkg_share = FindPackageShare('second_project')
     default_params = PathJoinSubstitution([pkg_share, 'config', 'mapper_params.yaml']) 
-    rviz_config = PathJoinSubstitution([pkg_share, 'config', 'rviz', 'mapping_rviz_config.rviz']) 
+    rviz_config = PathJoinSubstitution([pkg_share, 'config','rviz', 'mapping_rviz_config.rviz']) 
     print("rviz_config: ", rviz_config)
 
     rviz = Node(
@@ -42,8 +42,8 @@ def generate_launch_description():
             parameters=[{
                 'target_frame': 'rslidar',
                 'transform_tolerance': 0.01,
-                'min_height': 0.2,
-                'max_height': 1.0,
+                'min_height': -0.3,
+                'max_height': 0.4,
                 'angle_min': -3.14159,
                 'angle_max': 3.14159,
                 'angle_increment': 0.00175,
