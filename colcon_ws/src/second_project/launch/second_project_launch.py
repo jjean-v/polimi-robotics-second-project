@@ -2,6 +2,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
@@ -12,7 +13,18 @@ def generate_launch_description():
     rviz_config = PathJoinSubstitution([pkg_share, 'config', 'rviz', 'mapping_rviz_config.rviz']) 
     print("rviz_config: ", rviz_config)
 
+    rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', LaunchConfiguration('rviz_config')],
+        condition=IfCondition(LaunchConfiguration('rviz')),
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+    )
+
     return LaunchDescription([
+        DeclareLaunchArgument('rviz', default_value='true', description='Start RViz.'),
         DeclareLaunchArgument(name='scanner', default_value='ugv',description='Namespace for sample topics'),
         DeclareLaunchArgument('slam_mode', default_value='async', description='Use async or sync SLAM Toolbox mapping.'),
         DeclareLaunchArgument('use_sim_time', default_value='true', description='Use the simulator /clock.'),
@@ -28,10 +40,10 @@ def generate_launch_description():
             remappings=[('cloud_in', [LaunchConfiguration(variable_name='scanner'), '/rslidar_points']),
                         ('scan', [LaunchConfiguration(variable_name='scanner'), '/scan'])],
             parameters=[{
-                'target_frame': 'UGV_odom',
+                'target_frame': 'rslidar',
                 'transform_tolerance': 0.01,
-                'min_height': -0.4,
-                'max_height': 4.0,
+                'min_height': 0.2,
+                'max_height': 1.0,
                 'angle_min': -3.14159,
                 'angle_max': 3.14159,
                 'angle_increment': 0.00175,
@@ -60,13 +72,5 @@ def generate_launch_description():
                 },
             ],
         ),
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            # parameters=[{
-            #     'use_sim_time': LaunchConfiguration('use_sim_time'),
-            # }],
-            arguments=['-d', LaunchConfiguration('rviz_config')],
-        )
+        rviz
     ])
