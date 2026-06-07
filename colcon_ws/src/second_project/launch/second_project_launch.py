@@ -10,7 +10,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     pkg_share = FindPackageShare('second_project')
     default_params = PathJoinSubstitution([pkg_share, 'config', 'mapper_params.yaml']) 
-    rviz_config = PathJoinSubstitution([pkg_share, 'config','rviz', 'mapping_rviz_config.rviz']) 
+    rviz_config = PathJoinSubstitution([pkg_share, 'config', 'rviz' , 'mapping_rviz_config.rviz']) 
     print("rviz_config: ", rviz_config)
 
     rviz = Node(
