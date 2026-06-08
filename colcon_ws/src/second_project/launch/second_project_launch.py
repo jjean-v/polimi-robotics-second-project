@@ -49,7 +49,7 @@ def generate_launch_description():
                 'angle_increment': 0.00175,
                 'scan_time': 0.1,
                 'range_min': 0.15,
-                'range_max': 50.0, # before : 100.0, reducing expecting less "beams through windows noise" matching the mapper params
+                'range_max': 100.0,
                 'use_inf': True,
                 'inf_epsilon': 1.0
             }],
