@@ -10,6 +10,9 @@ The goal of this group project is to, from a bag file, compute the a map of the 
 
 ```bash
 apt install ros-humble-pointcloud-to-laserscan
+
+apt install ros-humble-slam-toolbox
+
 ```
 
 >    Note: to do this you need the root access, so you need to run the docker container with the command:
@@ -39,11 +42,14 @@ ros2 launch second_project second_project_launch.py
 > - In the LaserScan settings, select best effort to get the correct frame and topic
 > - Select **UVG_odom** as the fixed frame
 > - Optionnaly add **CloudPoint**
+> - Add Topic **Map** to visualize the map
+> - Add Topic **Arraymarker** to visualize the robot path
 
 
 ## Roadmap 
 
 - [x] Convert Point Cloud To Laser Scan
-- [] Fine tune the parameters of the node to get a good quality laser scan
-- [] Use the laser scan to compute the map of the environment
-- [] Use the map to navigate the robot in the environment
+- [x] Fine tune the parameters of the node to get a good quality laser scan
+- [x] Use the laser scan to compute the map of the environment
+- [x] Fine tune the parameters of the parameters file to get a good map3
+- [ ] Use the map to navigate the robot in the environment

@@ -8,7 +8,7 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>rclcpp</depend>
-
+  <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>pointcloud_to_laserscan</exec_depend>
 
   <export>

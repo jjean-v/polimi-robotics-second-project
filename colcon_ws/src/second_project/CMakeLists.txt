@@ -3,8 +3,7 @@ project(second_project)
 
 find_package(ament_cmake REQUIRED)
 
-# Installe le dossier launch
-install(DIRECTORY launch
+install(DIRECTORY config launch
   DESTINATION share/${PROJECT_NAME}
 )
 
