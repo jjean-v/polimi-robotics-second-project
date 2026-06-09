@@ -3,5 +3,5 @@ colcon_ws/log/
 colcon_ws/build/
 colcon_ws/install/
 bags/
-map/*.data
-map/*.posegraph
+*.data
+*.posegraph
