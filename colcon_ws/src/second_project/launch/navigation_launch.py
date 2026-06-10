@@ -35,14 +35,6 @@ def generate_launch_description():
         }.items()
     )
 
-    goal_publisher_node = Node(
-        package='second_project',
-        executable='goal_publisher',
-        name='goal_publisher',
-        output='screen',
-        parameters=[{'use_sim_time': use_sim_time}]
-    )
-
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -54,6 +46,5 @@ def generate_launch_description():
     return LaunchDescription([
         stageros_node,
         nav2_launch,
-        goal_publisher_node,
         rviz_node
     ])
