@@ -20,16 +20,14 @@ public:
 
         // Load the CSV file
         std::string pkg_share = ament_index_cpp::get_package_share_directory("second_project");
-        std::string csv_path = pkg_share + "/csv/my_goals.csv";
+        std::string csv_path = pkg_share + "/csv/goals.csv";
         load_csv(csv_path);
 
-        // Wait for the action server to be up
-        RCLCPP_INFO(this->get_logger(), "Waiting for 'navigate_to_pose' action server...");
-        client_ptr_->wait_for_action_server();
-        RCLCPP_INFO(this->get_logger(), "Action server is ready.");
-
-        // Start the sequence
-        send_next_goal();
+        // Check for the server every 500ms without blocking the executor
+        timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(500),
+            std::bind(&GoalPublisher::check_server_and_send, this)
+        );
     }
 
 private:
@@ -38,6 +36,7 @@ private:
     };
 
     rclcpp_action::Client<NavigateToPose>::SharedPtr client_ptr_;
+    rclcpp::TimerBase::SharedPtr timer_;
     std::vector<GoalPose> goals_;
     size_t current_goal_index_;
 
@@ -63,6 +62,25 @@ private:
             goals_.push_back(g);
         }
         RCLCPP_INFO(this->get_logger(), "Loaded %zu goals from CSV.", goals_.size());
+    }
+
+    void check_server_and_send() {
+        // Non-blocking check
+        if (!action_client_->action_server_is_ready()) {
+            // Use a throttle so we don't spam the terminal 2 times a second
+            RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000, 
+                "Waiting for 'navigate_to_pose' action server to come online...");
+            return; 
+        }
+
+        // If we reach this line, the server is definitively online!
+        RCLCPP_INFO(this->get_logger(), "Action server is ready. Initiating navigation sequence.");
+        
+        // Cancel this polling timer so it never runs again
+        timer_->cancel(); 
+        
+        // Fire off the first goal
+        sendNextGoal(); 
     }
 
     void send_next_goal() {
