@@ -20,7 +20,7 @@ public:
 
         // Load the CSV file
         std::string pkg_share = ament_index_cpp::get_package_share_directory("second_project");
-        std::string csv_path = pkg_share + "/csv/my_goals.csv";
+        std::string csv_path = pkg_share + "/csv/goals.csv";
         load_csv(csv_path);
 
         // Wait for the action server to be up
