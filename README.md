@@ -35,15 +35,6 @@ ros2 launch second_project second_project_launch.py
 
 5. Run the bag file. Due to its size you need to manually download the bag file from the link provided in the project description
 
-6. Use rviz to visualize the map and the laser scan
-
-> - Add **Tf**
-> - Add **LaserScan**
-> - In the LaserScan settings, select best effort to get the correct frame and topic
-> - Select **UVG_odom** as the fixed frame
-> - Optionnaly add **CloudPoint**
-> - Add Topic **Map** to visualize the map
-> - Add Topic **Arraymarker** to visualize the robot path
 
 
 ## Roadmap 
@@ -52,4 +43,7 @@ ros2 launch second_project second_project_launch.py
 - [x] Fine tune the parameters of the node to get a good quality laser scan
 - [x] Use the laser scan to compute the map of the environment
 - [x] Fine tune the parameters of the parameters file to get a good map3
-- [ ] Use the map to navigate the robot in the environment
+- [x] Use the map to navigate the robot in the environment
+- [ ] Add some noise to the robot odometry to simulate a real robot
+- [ ] Fine tune the parameters of the parameters file to get a good navigation performance
+- [ ] Write the publisher node that take a csv file with, the robot goes to the coordinate by avoiding the obstacles
