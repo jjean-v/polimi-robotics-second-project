@@ -66,7 +66,7 @@ private:
 
     void check_server_and_send() {
         // Non-blocking check
-        if (!action_client_->action_server_is_ready()) {
+        if (!client_ptr_->action_server_is_ready()) {
             // Use a throttle so we don't spam the terminal 2 times a second
             RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000, 
                 "Waiting for 'navigate_to_pose' action server to come online...");
@@ -80,7 +80,7 @@ private:
         timer_->cancel(); 
         
         // Fire off the first goal
-        sendNextGoal(); 
+        send_next_goal(); 
     }
 
     void send_next_goal() {
