@@ -21,7 +21,7 @@ amcl:
     first_map_only: false
     tf_broadcast: true
     transform_tolerance: 1.0
-    robot_model_type: nav2_amcl::OmniMotionModel
+    robot_model_type: nav2_amcl::DifferentialMotionModel
     laser_model_type: likelihood_field
     laser_likelihood_max_dist: 2.0
     laser_max_range: 8.0
@@ -153,22 +153,22 @@ controller_server:
     FollowPath:
       plugin: dwb_core::DWBLocalPlanner
       debug_trajectory_details: false
-      min_vel_x: -0.45
-      min_vel_y: -0.45
+      min_vel_x: 0.0
+      min_vel_y: 0.0
       max_vel_x: 0.45
-      max_vel_y: 0.45
+      max_vel_y: 0.0
       max_vel_theta: 0.9
-      min_speed_xy: -0.45
+      min_speed_xy: 0.0
       max_speed_xy: 0.45
-      min_speed_theta: -0.9
+      min_speed_theta: 0.0
       acc_lim_x: 1.0
-      acc_lim_y: 1.0
+      acc_lim_y: 0.0
       acc_lim_theta: 1.2
       decel_lim_x: -1.0
-      decel_lim_y: -1.0
+      decel_lim_y: 0.0
       decel_lim_theta: -1.2
       vx_samples: 20
-      vy_samples: 20
+      vy_samples: 1
       vtheta_samples: 30
       sim_time: 1.7
       linear_granularity: 0.05
