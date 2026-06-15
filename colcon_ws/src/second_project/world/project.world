@@ -23,7 +23,7 @@ window (
 
 floorplan (
   name "my_map"
-  bitmap "../map/my_map.png"
+  bitmap "my_map.png"
   size [ 30.85 17.75 2.0 ]
   pose [ 0.0 0.0 0.0 0.0 ]
 )
