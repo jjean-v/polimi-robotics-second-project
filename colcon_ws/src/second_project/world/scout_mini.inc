@@ -6,8 +6,14 @@ define kinect ranger (
 define scout_mini position (
   pose [ 0.0 0.0 0.0 0.0 ]
   localization "odom"
-  odom_error [0.0 0.0 0.0 0.0 ]
-  size [ 0.62 0.58 0.25 ]  # Approximate Scout Mini dimensions
+
+  # Injecting realistic noise into X, Y, Z, and Theta odometry 
+  # X/Y: 3% error | Z: 0% (2D simulation) | Theta: 5% error
+  odom_error [ 0.03 0.03 0.0 0.05 ]
+
+  # Approximate Scout Mini dimensions
+  size [ 0.62 0.58 0.25 ]  
+  
   origin [ 0.0 0.0 0.0 0.0 ]
   gui_nose 1
   drive "omni"
