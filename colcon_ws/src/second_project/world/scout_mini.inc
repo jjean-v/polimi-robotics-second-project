@@ -8,12 +8,12 @@ define scout_mini position (
   localization "odom"
 
   # Injecting realistic noise into X, Y, Z, and Theta odometry 
-  # X/Y: 3% error | Z: 0% (2D simulation) | Theta: 5% error
-  odom_error [ 0.03 0.03 0.0 0.05 ]
+  # X/Y: 0.5% error | Z: 0% (2D simulation) | Theta: 1% error
+  odom_error [ 0.005 0.005 0.0 0.01 ]
 
-  # Approximate Scout Mini dimensions
-  size [ 0.62 0.58 0.25 ]  
-  
+  # Approximate Scout Mini dimensions from https://global.agilex.ai/products/scout-mini
+  size [ 0.612 0.580 0.245 ]  
+
   origin [ 0.0 0.0 0.0 0.0 ]
   gui_nose 1
   drive "omni"
