@@ -38,8 +38,7 @@ public:
             return;
         }
 
-        // Create a 5-second polling timer to check if the action server is up.
-        // This is non-blocking and will wait infinitely until Nav2 is fully loaded.
+        // Create a 5-second polling timer before checking if the action server is up.
         timer_ = this->create_wall_timer(
             5s, std::bind(&GoalPublisher::check_server_and_start, this));
     }
@@ -69,7 +68,6 @@ private:
 
         std::string line;
         
-        // --- CSV Header Handling ---
         // Read the first line immediately to consume the "x,y,theta" header
         if (std::getline(file, line)) {
             RCLCPP_INFO(this->get_logger(), "Skipped CSV header: %s", line.c_str());
@@ -95,14 +93,14 @@ private:
     }
 
     void check_server_and_start() {
-        // --- Non-Blocking Server Check ---
-        // Instantly checks if the server is available without freezing the thread
+        
+        // Checks if the server is available
         if (!action_client_->action_server_is_ready()) {
             RCLCPP_INFO(this->get_logger(), "Waiting for Nav2 action server to come online...");
-            return; // Exit callback, timer will fire again in 1 second
+            return; // Exit callback, it loops
         }
 
-        // The server is ready! Stop the timer so it doesn't fire again.
+        // server is ready
         RCLCPP_INFO(this->get_logger(), "Nav2 Action Server is ONLINE! Starting navigation sequence.");
         timer_->cancel();
         
@@ -129,7 +127,6 @@ private:
         goal_msg.pose.pose.position.y = current_goal.y;
         goal_msg.pose.pose.position.z = 0.0;
 
-        // Convert theta to a Quaternion
         tf2::Quaternion q;
         q.setRPY(0, 0, current_goal.theta);
         goal_msg.pose.pose.orientation.x = q.x();
@@ -175,7 +172,6 @@ private:
                 break;
         }
 
-        // Increment the index and trigger the next dispatch [cite: 9]
         current_goal_index_++;
         send_next_goal();
     }
