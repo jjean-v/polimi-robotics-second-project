@@ -1,7 +1,7 @@
 The normal behavior of the package is to launch the slam algorithm with
 
 '''
-ros2 launch second_project second_project_launch.py
+ros2 launch second_project mapping_launch.py
 '''
 
 Then the navigation is launched with 
@@ -19,5 +19,5 @@ However, regarding the maximum speed we had to tune it down because of the refre
 
 It is intended to wait 5 seconds before starting the goal_publisher node, to make sure that everything related to stage and rviz2 started correctly. Still, a double check is performed through "action_server_is_ready()" method.
 
-The navigation being non-deterministic it happens that the robot does not find its way, from our tests it has a ~50% pass rate on the (-4.7,2.7,1.347) goal.
+The navigation being non-deterministic it happens that the robot does not find its way, from our tests it has a ~70% pass rate on the (-4.7,2.7,1.347) goal.
 The fastest run was performed in ~120 seconds, and a screenshot proving that it can perform the complete task is available in the package : robotics_all_task_complete_screenshot.png
