@@ -102,6 +102,14 @@ def generate_launch_description():
         parameters=[{'use_sim_time': use_sim_time}]
     )
 
+    goal_publisher_node = Node(
+        package='second_project',
+        executable='goal_publisher',
+        name='GoalPublisher',
+        output='screen',
+        parameters=[{'use_sim_time': use_sim_time}]
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true', description='Use the simulator /clock.'),
         DeclareLaunchArgument('autostart', default_value='true', description='Automatically configure and activate Nav2 lifecycle nodes.'),
@@ -123,5 +131,6 @@ def generate_launch_description():
         amcl,
         lifecycle_manager_localization,
         nav2_navigation,
-        rviz_node
+        rviz_node,
+        goal_publisher_node
     ])
