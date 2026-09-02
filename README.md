@@ -44,6 +44,6 @@ ros2 launch second_project second_project_launch.py
 - [x] Use the laser scan to compute the map of the environment
 - [x] Fine tune the parameters of the parameters file to get a good map3
 - [x] Use the map to navigate the robot in the environment
-- [ ] Add some noise to the robot odometry to simulate a real robot
-- [ ] Fine tune the parameters of the parameters file to get a good navigation performance
-- [ ] Write the publisher node that take a csv file with, the robot goes to the coordinate by avoiding the obstacles
+- [x] Add some noise to the robot odometry to simulate a real robot
+- [x] Fine tune the parameters of the parameters file to get a good navigation performance
+- [x] Write the publisher node that take a csv file with, the robot goes to the coordinate by avoiding the obstacles
