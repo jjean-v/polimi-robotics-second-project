@@ -48,15 +48,13 @@ Here are some screenshots of the result of the project:
 
 ### Mapping
 
-<img src="images/map-mapping.png" alt="Mapping" width="425"/>
+<img src="images/map-mapping.png" alt="Mapping" width="480"/>
 
 ### Navigation
 
-<div style="margin: auto">
 
-<img src="images/map-navigation.png" alt="Navigation" width="425"/>
-<img src="images/map-stageros-navigation.png" alt="Navigation" width="425"/>
-</div>
+<img src="images/map-navigation.png" alt="Navigation" width="500"/>
+<img src="images/map-stageros-navigation.png" alt="Navigation" width="405"/>
 
 ## Roadmap 
 
