@@ -27,14 +27,33 @@ colcon build
 source install/setup.bash
 ```
 
-4. Run the launch file
+4. Run the launch files
+
+The project is divided into two parts: the first focuses on mapping the environment using SLAM (Simultaneous Localization and Mapping), while the second focuses on navigating autonomously through the environment by following predefined goals. To run the first part, execute the following command:
 
 ```bash
-ros2 launch second_project second_project_launch.py
+ros2 launch second_project mapping_launch.py
+```
+And then run the bag file. Due to its size you need to manually download the bag file from the link provided in the project description
+
+To run the second part, you need to run the following command:
+
+```bash
+ros2 launch second_project navigation_launch.py
 ```
 
-5. Run the bag file. Due to its size you need to manually download the bag file from the link provided in the project description
+## Result
 
+Here are some screenshots of the result of the project:
+
+### Mapping
+
+
+### Navigation
+
+![Navigation](<images/map-navigation.png>)
+
+![Navigation](<images/map-stageros-navigation.png>)
 
 
 ## Roadmap 
