@@ -48,13 +48,17 @@ Here are some screenshots of the result of the project:
 
 ### Mapping
 
+<div style="width:50%; margin: auto;">
+
+![Mapping](images/map-mapping.png)
+</div>
 
 ### Navigation
 
-![Navigation](<images/map-navigation.png>)
-
-![Navigation](<images/map-stageros-navigation.png>)
-
+<div style="display: flex; justify-content: center; gap: 1rem;">
+	<img src="images/map-navigation.png" alt="Navigation" style="width: 40%;">
+	<img src="images/map-stageros-navigation.png" alt="Stage ROS navigation" style="width: 40%;">
+</div>
 
 ## Roadmap 
 
