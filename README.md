@@ -53,7 +53,7 @@ Here are some screenshots of the result of the project:
 ### Navigation
 
 
-![Navigation](<images/map-navigation.png>=40%x) ![Navigation](<images/map-stageros-navigation.png>=>60%x)
+![Navigation](images/map-navigation.png "test 1" =40%x) ![Navigation](images/map-stageros-navigation.png "test" =60%x)
 
 ## Roadmap 
 
